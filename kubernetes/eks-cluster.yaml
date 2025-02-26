@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: python-app-cluster
+  region: us-west-2
+
+nodeGroups:
+  - name: ng-1
+    instanceType: t3.medium
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 3
+    iam:
+      withAddonPolicies:
+        imageBuilder: true
+        autoScaler: true
+        albIngress: true
+    ssh:
+      allow: false
+
+      #.github/workflows/jenkins-trigger.yml
